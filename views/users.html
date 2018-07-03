@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>users</title>
+</head>
+
+<body>
+  users
+  <script>
+    var arr = [{
+        "class_id": "1",
+        "parent_class_id": "0",
+        "class_name": "日杂",
+        "class_sort": "0",
+        "comments": null
+      },
+      {
+        "class_id": "2",
+        "parent_class_id": "0",
+        "class_name": "五金",
+        "class_sort": "0",
+        "comments": null
+      },
+      {
+        "class_id": "100",
+        "parent_class_id": "2",
+        "class_name": "螺丝",
+        "class_sort": "0",
+        "comments": null
+      },
+      {
+        "class_id": "104",
+        "parent_class_id": "6",
+        "class_name": "测试1同级",
+        "class_sort": "0",
+        "comments": null
+      },
+      {
+        "class_id": "6",
+        "parent_class_id": "1",
+        "class_name": "测试",
+        "class_sort": "1",
+        "comments": null
+      },
+      {
+        "class_id": "7",
+        "parent_class_id": "6",
+        "class_name": "测试1",
+        "class_sort": "1",
+        "comments": null
+      },
+      {
+        "class_id": "8",
+        "parent_class_id": "7",
+        "class_name": "测试11",
+        "class_sort": "1",
+        "comments": null
+      },
+      {
+        "class_id": "9",
+        "parent_class_id": "8",
+        "class_name": "测试111",
+        "class_sort": "1",
+        "comments": null
+      }
+    ];
+
+    function fetchArr(id, name) {
+      var arr2 = [];
+      for (let index = 0, len = arr.length; index < len; index++) {
+        if (id == arr[index].parent_class_id) {
+          var obj = {}
+          if (name) {
+            obj.aname = name + '/' + arr[index].class_name;
+          } else {
+            obj.aname = arr[index].class_name;
+          }
+          obj["class_id"] = arr[index].class_id
+          obj["parent_class_id"] = arr[index].parent_class_id
+          obj["class_name"] = arr[index].class_name
+          obj["class_sort"] = arr[index].class_sort
+          obj["comments"] = arr[index].comments
+          obj.c = fetchArr(arr[index].class_id, obj.aname);
+          arr2.push(obj);
+        }
+      }
+      return arr2;
+    }
+
+    console.log(JSON.stringify(fetchArr(0, '')));
+  </script>
+</body>
+
+</html>
