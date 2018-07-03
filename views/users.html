@@ -68,11 +68,12 @@
         "comments": null
       }
     ];
-
+    var conut = 0;
     function fetchArr(id, name) {
       var arr2 = [];
       for (let index = 0, len = arr.length; index < len; index++) {
         if (id == arr[index].parent_class_id) {
+          conut++;
           var obj = {}
           if (name) {
             obj.aname = name + '/' + arr[index].class_name;
@@ -92,6 +93,7 @@
     }
 
     console.log(JSON.stringify(fetchArr(0, '')));
+    console.log(conut);
   </script>
 </body>
 

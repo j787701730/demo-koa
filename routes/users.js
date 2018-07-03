@@ -2,7 +2,7 @@ var router = require('koa-router')();
 
 router.prefix('/users');
 
-router.get('/:id/:sss', function* (next) {
+router.get('/', function* (next) {
   // console.log(this.params);
   // this.body = 123123;
   yield this.render('users');
